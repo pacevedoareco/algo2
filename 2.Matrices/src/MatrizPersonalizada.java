@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MatrizPersonalizada {
@@ -18,10 +19,14 @@ public class MatrizPersonalizada {
                     try {
                         System.out.print("Ingrese valor para posición [" + i + "][" + j + "]: ");
                         matriz[i][j] = scanner.nextInt();
+                        if(matriz[i][j] < 1)
+                            throw new Exception("ValorIncorrecto");
                         inputValido = true;
-                    } catch (Exception e) {
-                        System.out.println("El valor tiene que ser entero. Vuelva a intentarlo.");
+                    } catch (InputMismatchException e) {
+                        System.out.println("El valor tiene que ser un entero positivo. Vuelva a intentarlo.");
                         scanner.next(); // "limpio" el cache del scanner.
+                    } catch (Exception e){
+                        System.out.println("El valor tiene que ser un entero positivo. Vuelva a intentarlo.");
                     }
                 } while (!inputValido);
             }

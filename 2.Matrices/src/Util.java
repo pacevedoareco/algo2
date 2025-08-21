@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Util {
@@ -39,10 +40,14 @@ public class Util {
                 filas = scanner.nextInt();
                 System.out.print("Ingrese cantidad de columnas: ");
                 columnas = scanner.nextInt();
+                if(filas < 1 || columnas < 1)
+                    throw new Exception();
                 inputValido = true;
-            } catch (Exception e) {
-                System.out.println("El valor tiene que ser entero. Vuelva a intentarlo.");
+            } catch (InputMismatchException e) {
+                System.out.println("El valor tiene que ser un entero positivo. Vuelva a intentarlo.");
                 scanner.next(); // "limpio" el cache del scanner.
+            } catch (Exception e){
+                System.out.println("El valor tiene que ser un entero positivo. Vuelva a intentarlo.");
             }
         } while (!inputValido);
         return new int[]{filas, columnas};

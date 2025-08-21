@@ -29,10 +29,22 @@ public class Util {
     // Pide el nro de filas y columnas y retorna un array de 2 posiciones con esos valores
     public static int[] pedirTamanioMatriz(){
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Ingrese cantidad de filas: ");
-        int filas = scanner.nextInt();
-        System.out.print("Ingrese cantidad de columnas: ");
-        int columnas = scanner.nextInt();
+        int filas = 0;
+        int columnas = 0;
+        boolean inputValido = false;
+        // bucle hasta que el valor sea correcto
+        do {
+            try {
+                System.out.print("Ingrese cantidad de filas: ");
+                filas = scanner.nextInt();
+                System.out.print("Ingrese cantidad de columnas: ");
+                columnas = scanner.nextInt();
+                inputValido = true;
+            } catch (Exception e) {
+                System.out.println("El valor tiene que ser entero. Vuelva a intentarlo.");
+                scanner.next(); // "limpio" el cache del scanner.
+            }
+        } while (!inputValido);
         return new int[]{filas, columnas};
     }
 
